@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: microservicio-lrq
+  name: microservicio-lrq-4.4.4
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservicio-lrq
+  template:
+    metadata:
+      labels:
+        app: microservicio-lrq
+        version: "444"
+    spec:
+      containers:
+      - args:
+        - java -jar /opt/3htp/demo-istio-0.0.1-SNAPSHOT.jar
+        command:
+        - /bin/bash
+        - -c
+        image: lramirezq/istio-ppt:4.4.4
+        imagePullPolicy: IfNotPresent
+        name: microservicio-lrq
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      restartPolicy: Always
+      schedulerName: default-scheduler
