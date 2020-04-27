@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: lramirez-service
+spec:
+  hosts:
+  - lrq
+  gateways:
+  -  lrq-gw
+  http:
+  - match:
+    - uri:
+        exact: /version
+    route:
+    - destination:
+        host: lrq.default.svc.cluster.local
+        subset: version4

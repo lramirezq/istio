@@ -1,0 +1,11 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: rules-lrq
+  namespace: default
+spec:
+  host: lrq
+  subsets:
+  - name: version4
+    labels:
+      version: "444"
